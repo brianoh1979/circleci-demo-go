@@ -1,6 +1,6 @@
-version: 2.1 # use CircleCI 2.0
-jobs: # basic units of work in a run
-  build: # runs not using Workflows must have a `build` job as entry point
+version: 2.1 
+jobs: 
+  build: 
     docker: # run the steps with Docker
       # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
       - image: circleci/golang:1.12
@@ -30,13 +30,7 @@ jobs: # basic units of work in a run
           name: Run unit tests
           environment: # environment variables for the database url and path to migration files
             CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
-            CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations
-
-          # store the results of our tests in the $TEST_RESULTS directory
-        #  command: |
-        #    PACKAGE_NAMES=$(go list ./... | circleci tests split --split-by=timings --timings-type=classname)
-        #    gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
-            
+            CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations            
           command: | 
             go list ./... | circleci tests run  
                --test-results-path=./test-results.xml 
