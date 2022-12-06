@@ -29,7 +29,7 @@ jobs:
             go list ./... | circleci tests run  \
                --test-results-path=./test-results.xml \
                --command='xargs gotestsum --junitfile \
-            ./tmp/test-results/gotestsum-report.xml -- --' \
+            ./test-results/junit.xml -- --' \
                --fail-fast                       
       - run: make 
       - save_cache:
