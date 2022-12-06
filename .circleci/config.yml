@@ -26,10 +26,10 @@ jobs:
             CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
             CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations            
           command: | 
-            go list ./... | circleci tests run  
-               --test-results-path=./test-results.xml 
-               --command='xargs gotestsum --junitfile 
-            ./tmp/test-results/gotestsum-report.xml -- --'
+            go list ./... | circleci tests run  \
+               --test-results-path=./test-results.xml \
+               --command='xargs gotestsum --junitfile \
+            ./tmp/test-results/gotestsum-report.xml -- --' \
                --fail-fast                       
       - run: make 
       - save_cache:
