@@ -28,7 +28,6 @@ jobs:
           command: | 
             go list ./... | circleci tests run  \
                --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml' \
-               --batch-count=2
                --fail-fast                       
       - run: make 
       - save_cache:
