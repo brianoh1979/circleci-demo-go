@@ -27,11 +27,7 @@ jobs:
             CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations            
           command: | 
             go list ./... | circleci tests run  \
-<<<<<<< HEAD
-               --command='xargs gotestsum --junitfile ./tmp/test-results/gotestsum-report.xml -- --' \
-=======
                --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml' \
->>>>>>> 41a4cc707d413ac0e65a82c330b43b7c1dab4f80
                --fail-fast                       
       - run: make 
       - save_cache:
