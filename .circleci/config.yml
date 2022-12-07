@@ -29,6 +29,7 @@ jobs:
             go list ./... | circleci tests run  \
                --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml' \
                --fail-fast                       
+               --batch-count=3
       - run: make 
       - save_cache:
           key: go-mod-v4-{{ checksum "go.sum" }}
