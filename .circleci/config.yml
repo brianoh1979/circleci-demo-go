@@ -3,11 +3,11 @@ jobs:
   build: 
     docker: 
       - image: circleci/golang:1.12
+    parallelism: 4
       - image: circleci/postgres:9.6-alpine
           environment: 
           POSTGRES_USER: circleci-demo-go
           POSTGRES_DB: circle_test
-    parallelism: 4
     environment: 
       TEST_RESULTS: /tmp/test-results # path to where test results will be saved
 
