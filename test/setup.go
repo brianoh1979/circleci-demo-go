@@ -57,5 +57,5 @@ func SetupDB(t *testing.T) *service.Database {
 	db, err := sql.Open("postgres", databaseUrl)
 	require.NoError(t, err, "Error opening database")
 
-	return &service.Database{db}
+	return &service.Database2{db}
 }
