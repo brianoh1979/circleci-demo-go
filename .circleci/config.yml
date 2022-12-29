@@ -4,10 +4,10 @@ jobs:
     docker: 
       - image: circleci/golang:1.12
       - image: circleci/postgres:9.6-alpine
-        environment: 
+          environment: 
           POSTGRES_USER: circleci-demo-go
           POSTGRES_DB: circle_test
-
+    parallelism: 4
     environment: 
       TEST_RESULTS: /tmp/test-results # path to where test results will be saved
 
@@ -26,7 +26,7 @@ jobs:
             CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
             CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations            
           command: | 
-            go list ./... | circleci tests run  \
+            go test -v $(go list ./... | circleci tests split --split-by=timings)  \
                --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml' 
       - run: make 
       - save_cache:
