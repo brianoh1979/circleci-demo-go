@@ -25,8 +25,8 @@ jobs:
             CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
             CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations            
           command: | 
-            PACKAGE_NAMES=$(go list ./... | circleci tests split --split-by=timings --timings-type=classname) | circleci tests run  \
-            --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES'
+            go list ./... | circleci tests run  \
+            --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $(go list ./... | circleci tests split --split-by=timings --timings-type=classname)'
       - run: make 
       - save_cache:
           key: go-mod-v4-{{ checksum "go.sum" }}
