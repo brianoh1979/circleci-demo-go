@@ -26,7 +26,7 @@ jobs:
             CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations            
           command: | 
             TEST=$(circleci tests glob "test/*.go")
-            go list ./... | echo $TEST | circleci tests run  \
+            echo $TEST | circleci tests run  \
                --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml' 
       - run: make 
       - save_cache:
