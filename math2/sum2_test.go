@@ -16,6 +16,15 @@ func TestSumNegative(t *testing.T) {
 	assert.Equal(t, total, -9)
 }
 
+func TestSumPositive2(t *testing.T) {
+        total := Sum(1, 2)
+        assert.Equal(t, total, 3)
+}
+func TestSumNegative2(t *testing.T) {
+        total := Sum(1, -11)
+        assert.Equal(t, total, -10)
+}
+
 func TestSumLarge(t *testing.T) {
 	time.Sleep(5 * time.Second)
 	total := Sum(10000, 10000)
