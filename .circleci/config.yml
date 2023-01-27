@@ -15,7 +15,7 @@ jobs:
       - run: mkdir -p $TEST_RESULTS # create the test results directory
       - restore_cache: 
           keys:
-            - go-mod-v4-{{ checksum "go.sum" }}
+            - go-mod-v5-{{ checksum "go.sum" }}
       - run:
           name: Waiting for Postgres to be ready
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -31,7 +31,7 @@ jobs:
             --fail-fast
       - run: make 
       - save_cache:
-          key: go-mod-v4-{{ checksum "go.sum" }}
+          key: go-mod-v5-{{ checksum "go.sum" }}
           paths:
             - "/go/pkg/mod"
       - run:
