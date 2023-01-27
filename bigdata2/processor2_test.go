@@ -15,3 +15,13 @@ func TestDoComplexComputation(t *testing.T) {
 	result := DoComplexComputation()
 	assert.True(t, result)
 }
+
+func TestDoComputation2(t *testing.T) {
+        result := DoComputation()
+        assert.True(t, result)
+}
+
+func TestDoComplexComputation2(t *testing.T) {
+        result := DoComplexComputation()
+        assert.True(t, result)
+}
