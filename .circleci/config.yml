@@ -15,7 +15,7 @@ jobs:
       - run: mkdir -p $TEST_RESULTS # create the test results directory
       - restore_cache: 
           keys:
-            - go-mod-v5-{{ checksum "go.sum" }}
+            - go-mod-v6-{{ checksum "go.sum" }}
       - run:
           name: Waiting for Postgres to be ready
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -25,14 +25,11 @@ jobs:
             CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
             CONTACTS_DB_MIGRATIONS: /home/circleci/project/db/migrations            
           command: | 
-            go list ./... | circleci tests run  \
-            --command='xargs gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $(go list ./... | 
-            circleci tests split --split-by=timings --timings-type=classname)' \
-            --batch-count=6 \
-            --fail-fast
+            PACKAGE_NAMES=$(go list ./... | circleci tests split --split-by=timings --timings-type=classname)
+            gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
       - run: make 
       - save_cache:
-          key: go-mod-v5-{{ checksum "go.sum" }}
+          key: go-mod-v6-{{ checksum "go.sum" }}
           paths:
             - "/go/pkg/mod"
       - run:
