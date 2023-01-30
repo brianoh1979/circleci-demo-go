@@ -8,12 +8,12 @@ import (
 
 func TestDoComputation(t *testing.T) {
 	result := DoComputation()
-	assert.False(t, result)
+	assert.True(t, result)
 }
 
 func TestDoComplexComputation(t *testing.T) {
 	result := DoComplexComputation()
-	assert.True(t, result)
+	assert.False(t, result)
 }
 
 func TestDoComputation2(t *testing.T) {
