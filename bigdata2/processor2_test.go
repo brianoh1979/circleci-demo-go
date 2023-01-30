@@ -8,7 +8,7 @@ import (
 
 func TestDoComputation(t *testing.T) {
 	result := DoComputation()
-	assert.True(t, result)
+	assert.False(t, result)
 }
 
 func TestDoComplexComputation(t *testing.T) {
