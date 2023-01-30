@@ -9,7 +9,7 @@ jobs:
           POSTGRES_DB: circle_test
     environment: 
       TEST_RESULTS: /tmp/test-results # path to where test results will be saved
-    parallelism: 2
+    parallelism: 4
     steps: 
       - checkout 
       - run: mkdir -p $TEST_RESULTS # create the test results directory
