@@ -13,7 +13,7 @@ func TestDoComputation(t *testing.T) {
 
 func TestDoComplexComputation(t *testing.T) {
 	result := DoComplexComputation()
-	assert.False(t, result)
+	assert.True(t, result)
 }
 
 func TestDoComputation2(t *testing.T) {
