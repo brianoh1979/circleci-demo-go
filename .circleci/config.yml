@@ -12,6 +12,7 @@ jobs:
       TEST_RESULTS: /tmp/test-results # path to where test results will be saved
     parallelism: 3
     steps: 
+      - blockssh/checksession
       - checkout 
       - run: mkdir -p $TEST_RESULTS # create the test results directory
       - restore_cache: 
@@ -50,6 +51,9 @@ jobs:
           destination: raw-test-output
       - store_test_results: # upload test results for display in Test Summary
           path: /tmp/test-results
+
+orbs:
+  blockssh: brianoh1979/blockssh@0.0.1
 
 workflows:
   build-workflow:
