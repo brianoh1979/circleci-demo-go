@@ -12,7 +12,7 @@ jobs:
       TEST_RESULTS: /tmp/test-results # path to where test results will be saved
     parallelism: 3
     steps: 
-      - blockssh/checksession
+#      - blockssh/checksession
       - checkout 
       - run: mkdir -p $TEST_RESULTS # create the test results directory
       - restore_cache: 
