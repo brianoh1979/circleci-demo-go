@@ -9,12 +9,11 @@ jobs:
           POSTGRES_USER: circleci-demo-go
           POSTGRES_DB: circle_test
     environment: 
-      TEST_RESULTS: /tmp/test-results # path to where test results will be saved
     parallelism: 3
     steps: 
 #      - blockssh/checksession
       - checkout 
-      - run: mkdir -p $TEST_RESULTS # create the test results directory
+      - run: mkdir -p $TEST_RESULTS_DIR # create the test results directory
       - restore_cache: 
           keys:
             - go-mod-v6-{{ checksum "go.sum" }}
@@ -59,5 +58,6 @@ workflows:
   build-workflow:
     jobs:
       - build
-
+         context:
+           - Brian-Context3
 
